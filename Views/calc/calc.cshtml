@@ -5,33 +5,54 @@
 <div class="text-center">
     <h1 class="display-4">The value checker</h1>
     <p>This program will display the greater value of the square root of 2 numbers</p>
-    <form asp-controller="calc" asp-action="calc"  method="POST">
-        <input type="number" placeholder="Enter a number" name="firstnum" />
-        <input type="number" placeholder="Enter a number" name="secondnum" /><br /><br />
+</div>
+
+<div class="text-center">
+    <form asp-controller="calc" asp-action="calc" method="POST">
+        <input placeholder="Enter a number" name="firstnum" />
+        <input placeholder="Enter a number" name="secondnum" /><br /><br />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @{
-            if (ViewBag.first != null && ViewBag.second != null) {
-                <div class = "text-center"></div>
-                try{
-                     if (ViewBag.first >  ViewBag.second) {
-                        <div class = "text-center">
-                             <p> The number @ViewBag.one with Square root @ViewBag.result1 has a higher square root than @ViewBag.two with square root @ViewBag.result2 </p>
-                        </div>
-                        }else if(ViewBag.second >  ViewBag.first){
-                         <div class = "text-center">
-                                 <p> The number @ViewBag.two with Square root @ViewBag.result2 has a higher square root than @ViewBag.one with square root @ViewBag.result1 </p>
-                         </div>
-                        }else  if (ViewBag.first ==  ViewBag.Second && ViewBag.second ==  ViewBag.one ) {
-                          <div class = "text-center">
-                              <p> The number @ViewBag.one with Square root @ViewBag.result1 has the same Value with @ViewBag.two with square root @ViewBag.result2 , PLEASE ENTER DIFFERENT VALUES </p>
-                          </div>
-                        } 
-                }catch (FormatException){
-                  <div>
-                      <p> WRONG INPUT PLEASE ENTER A POSITIVE VALUE!! </p>
-                   </div>
-                }
-            }
+    if (ViewBag.result1 != null && ViewBag.result2 != null)
+    {
+        if (ViewBag.result1 == ViewBag.result2)
+        {
+            <div class="text-center">
+                <p>
+                    Both Values are the same, please enter another set of numbers.
+                </p>
+            </div>
+        }
+        else if (ViewBag.result1 > ViewBag.result2)
+        {
+            //Calculates the greater value of the squareroot of the numbers entered by the user
+            <div class="text-center">
+                <p>
+                    The number @ViewBag.one with a Squareroot of @ViewBag.result1 has a
+                    higher squareroot than @ViewBag.two with a squareroot of @ViewBag.result2.
+                </p>
+            </div>
+        }
+        else if (ViewBag.result2 > ViewBag.result1)
+        {
+            <div class="text-center">
+                <p>
+                    The number @ViewBag.two with a Squareroot of @ViewBag.result2 has a
+                    higher squareroot than @ViewBag.one with a squareroot of @ViewBag.result1.
+                </p>
+            </div>
+        }
+        else if (ViewBag.a < 0 || ViewBag.b < 0)
+        {  
+            <div class="text-center">
+                <p>
+                    Please enter positive numbers only.
+                </p>
+            </div>
+        }
+
+    }
+
 }
